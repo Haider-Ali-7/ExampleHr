@@ -1,4 +1,4 @@
 {
-  "buildCommand": "npm run build-storybook",
-  "outputDirectory": "./storybook-static"
+  "buildCommand": "bun run build-storybook",
+  "outputDirectory": "./output/storybook-static"
 }
