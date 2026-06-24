@@ -130,6 +130,24 @@ export function useEmployeeLeave(employeeId: string, employeeName: string): UseE
       }
     }
 
+    if (type === 'anniversary_credited') {
+      const p = payload as { employeeId?: string };
+      if (!p.employeeId || p.employeeId === employeeId) {
+        queryClient.invalidateQueries({ queryKey: queryKeys.balances.byEmployee(employeeId) });
+        setIsBalancesStale(false);
+        addToast('Anniversary bonus added to your balance!', 'success');
+      }
+    }
+
+    if (type === 'yearly_reset_applied') {
+      const p = payload as { employeeId?: string };
+      if (!p.employeeId || p.employeeId === employeeId) {
+        queryClient.invalidateQueries({ queryKey: queryKeys.balances.byEmployee(employeeId) });
+        setIsBalancesStale(false);
+        addToast('Yearly balance bonus added!', 'success');
+      }
+    }
+
     if (type === 'request_decided') {
       const p = payload as LeaveRequest;
       if (p.employeeId === employeeId) {

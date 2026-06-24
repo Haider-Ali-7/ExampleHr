@@ -122,6 +122,16 @@ export function useManagerLeave(): UseManagerLeaveReturn {
       addToast("Leave balances updated by HCM system.", "info");
     }
 
+    if (type === "anniversary_credited") {
+      queryClient.invalidateQueries({ queryKey: queryKeys.balances.all });
+      addToast("Anniversary bonus applied to employee balance.", "info");
+    }
+
+    if (type === "yearly_reset_applied") {
+      queryClient.invalidateQueries({ queryKey: queryKeys.balances.all });
+      addToast("Yearly balance bonus applied to all employees.", "info");
+    }
+
     if (type === "request_decided") {
       queryClient.invalidateQueries({ queryKey: queryKeys.requests.all });
       queryClient.invalidateQueries({ queryKey: queryKeys.balances.all });
