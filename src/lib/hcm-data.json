@@ -1,0 +1,3364 @@
+{
+  "users": [
+    {
+      "id": "usr_emp001",
+      "email": "employee1@gmail.com",
+      "password": "123456",
+      "name": "John Smith",
+      "role": "employee",
+      "employeeId": "emp_001"
+    },
+    {
+      "id": "usr_emp002",
+      "email": "employee2@gmail.com",
+      "password": "123456",
+      "name": "Sarah Johnson",
+      "role": "employee",
+      "employeeId": "emp_002"
+    },
+    {
+      "id": "usr_emp003",
+      "email": "employee3@gmail.com",
+      "password": "123456",
+      "name": "Marcus Chen",
+      "role": "employee",
+      "employeeId": "emp_003"
+    },
+    {
+      "id": "usr_mgr001",
+      "email": "manager1@gmail.com",
+      "password": "123456",
+      "name": "Alex Manager",
+      "role": "manager",
+      "employeeId": null
+    },
+    {
+      "id": "usr_adm001",
+      "email": "admin1@gmail.com",
+      "password": "123456",
+      "name": "Dana Admin",
+      "role": "admin",
+      "employeeId": null
+    }
+  ],
+  "balances": [
+    {
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "NY",
+      "leaveType": "annual",
+      "balance": 290,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "NY",
+      "leaveType": "sick",
+      "balance": 133,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "NY",
+      "leaveType": "personal",
+      "balance": 95,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "annual",
+      "balance": 290,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "sick",
+      "balance": 133,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "personal",
+      "balance": 95,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "location": "NY",
+      "leaveType": "annual",
+      "balance": 285,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "location": "NY",
+      "leaveType": "sick",
+      "balance": 133,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "location": "NY",
+      "leaveType": "personal",
+      "balance": 95,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "location": "Singapore",
+      "leaveType": "annual",
+      "balance": 285,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "location": "Singapore",
+      "leaveType": "sick",
+      "balance": 133,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "location": "Singapore",
+      "leaveType": "personal",
+      "balance": 95,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "location": "London",
+      "leaveType": "annual",
+      "balance": 285,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "location": "London",
+      "leaveType": "sick",
+      "balance": 133,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    },
+    {
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "location": "London",
+      "leaveType": "personal",
+      "balance": 95,
+      "lastUpdated": "2026-06-24T18:55:33.364Z"
+    }
+  ],
+  "requests": [
+    {
+      "id": "897b8171-a7b4-4ddc-8b24-73ce88bc3843",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "personal",
+      "startDate": "2026-06-24",
+      "endDate": "2026-06-24",
+      "days": 1,
+      "reason": "Some personal work",
+      "status": "rejected",
+      "submittedAt": "2026-06-24T11:52:14.010Z",
+      "decidedAt": "2026-06-24T11:53:18.424Z",
+      "decidedBy": "Alex Manager",
+      "managerNote": "Not approved",
+      "balanceAtDecision": 2
+    },
+    {
+      "id": "ce3d4f17-a40c-4ea1-812e-64303233484d",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "sick",
+      "startDate": "2026-06-24",
+      "endDate": "2026-06-24",
+      "days": 1,
+      "reason": "Sick leave",
+      "status": "approved",
+      "submittedAt": "2026-06-24T13:04:20.045Z",
+      "decidedAt": "2026-06-24T13:04:43.305Z",
+      "decidedBy": "Alex Manager",
+      "balanceAtDecision": 1
+    },
+    {
+      "id": "bca03b15-7470-444e-a814-d47310699a94",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "sick",
+      "startDate": "2026-06-24",
+      "endDate": "2026-06-24",
+      "days": 1,
+      "reason": "Need a Sick leave",
+      "status": "rejected",
+      "submittedAt": "2026-06-24T13:20:23.895Z",
+      "decidedAt": "2026-06-24T13:38:14.291Z",
+      "decidedBy": "Alex Manager",
+      "managerNote": "Rejcted",
+      "balanceAtDecision": 1
+    },
+    {
+      "id": "b4b6f7a6-dd6d-4460-ab00-88ed4a5db259",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "sick",
+      "startDate": "2026-06-24",
+      "endDate": "2026-06-24",
+      "days": 1,
+      "reason": "Need 1 day leave",
+      "status": "rejected",
+      "submittedAt": "2026-06-24T13:37:23.999Z",
+      "decidedAt": "2026-06-24T13:38:23.049Z",
+      "decidedBy": "Alex Manager",
+      "managerNote": "Rejected",
+      "balanceAtDecision": 1
+    },
+    {
+      "id": "09e13b5b-7be2-46ee-9f41-4381766aee4a",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "personal",
+      "startDate": "2026-06-24",
+      "endDate": "2026-06-24",
+      "days": 1,
+      "reason": "Need leave",
+      "status": "rejected",
+      "submittedAt": "2026-06-24T13:38:51.162Z",
+      "decidedAt": "2026-06-24T13:39:00.998Z",
+      "decidedBy": "Alex Manager",
+      "managerNote": "Rejected",
+      "balanceAtDecision": 5
+    },
+    {
+      "id": "014871cd-34ee-4891-bf5e-5b78484a056f",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "personal",
+      "startDate": "2026-06-24",
+      "endDate": "2026-06-25",
+      "days": 2,
+      "reason": "Need leave",
+      "status": "rejected",
+      "submittedAt": "2026-06-24T13:39:20.223Z",
+      "decidedAt": "2026-06-24T13:39:28.286Z",
+      "decidedBy": "Alex Manager",
+      "managerNote": "",
+      "balanceAtDecision": 5
+    },
+    {
+      "id": "890fc922-929b-4675-a9ca-931d4cb73898",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "personal",
+      "startDate": "2026-06-24",
+      "endDate": "2026-06-25",
+      "days": 2,
+      "reason": "Need leave",
+      "status": "approved",
+      "submittedAt": "2026-06-24T13:39:47.615Z",
+      "decidedAt": "2026-06-24T13:39:54.870Z",
+      "decidedBy": "Alex Manager",
+      "balanceAtDecision": 5
+    },
+    {
+      "id": "b3e7a249-3eee-410f-b2cd-76efd0efeae5",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "personal",
+      "startDate": "2026-06-26",
+      "endDate": "2026-06-27",
+      "days": 2,
+      "reason": "Need leave",
+      "status": "rejected",
+      "submittedAt": "2026-06-24T13:40:36.139Z",
+      "decidedAt": "2026-06-24T13:47:41.935Z",
+      "decidedBy": "Alex Manager",
+      "managerNote": "",
+      "balanceAtDecision": 3
+    },
+    {
+      "id": "07c1a456-7001-48ee-a0a0-d60dc2e8801f",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "personal",
+      "startDate": "2026-06-26",
+      "endDate": "2026-06-26",
+      "days": 1,
+      "reason": "Need leave",
+      "status": "rejected",
+      "submittedAt": "2026-06-24T13:40:44.238Z",
+      "decidedAt": "2026-06-24T13:47:43.760Z",
+      "decidedBy": "Alex Manager",
+      "managerNote": "",
+      "balanceAtDecision": 3
+    },
+    {
+      "id": "b303972d-1b8a-4d21-847a-e334b9561636",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "personal",
+      "startDate": "2026-06-25",
+      "endDate": "2026-06-25",
+      "days": 1,
+      "reason": "Need leave",
+      "status": "approved",
+      "submittedAt": "2026-06-24T13:48:10.062Z",
+      "decidedAt": "2026-06-24T13:48:23.878Z",
+      "decidedBy": "Alex Manager",
+      "balanceAtDecision": 3
+    },
+    {
+      "id": "330b4c8a-2bab-454b-b77a-299ca5a6bcd1",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "London",
+      "leaveType": "annual",
+      "startDate": "2026-06-26",
+      "endDate": "2026-06-26",
+      "days": 1,
+      "reason": "Need leave",
+      "status": "approved",
+      "submittedAt": "2026-06-24T13:49:00.597Z",
+      "decidedAt": "2026-06-24T13:49:06.259Z",
+      "decidedBy": "Alex Manager",
+      "balanceAtDecision": 5
+    },
+    {
+      "id": "25f469cf-75a3-4305-b365-85356fb2dc05",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "NY",
+      "leaveType": "annual",
+      "startDate": "2026-07-01",
+      "endDate": "2026-07-03",
+      "days": 3,
+      "reason": "Annual leave",
+      "status": "rejected",
+      "submittedAt": "2026-06-24T15:12:56.975Z",
+      "decidedAt": "2026-06-24T15:13:14.391Z",
+      "decidedBy": "Alex Manager",
+      "managerNote": "",
+      "balanceAtDecision": 10
+    },
+    {
+      "id": "1f6b72ed-7016-47b3-8129-5ec2835b1455",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "location": "NY",
+      "leaveType": "annual",
+      "startDate": "2026-07-01",
+      "endDate": "2026-07-03",
+      "days": 3,
+      "reason": "Annual leave",
+      "status": "approved",
+      "submittedAt": "2026-06-24T15:13:39.945Z",
+      "decidedAt": "2026-06-24T15:13:46.251Z",
+      "decidedBy": "Alex Manager",
+      "balanceAtDecision": 10
+    }
+  ],
+  "employeeConfigs": [
+    {
+      "employeeId": "emp_001",
+      "hireDate": "2022-06-24",
+      "anniversaryCredits": [
+        {
+          "leaveType": "annual",
+          "creditsPerYear": 5
+        }
+      ],
+      "lastAnniversaryCredited": "2026-06-24"
+    },
+    {
+      "employeeId": "emp_002",
+      "hireDate": "2023-03-15",
+      "anniversaryCredits": [
+        {
+          "leaveType": "annual",
+          "creditsPerYear": 5
+        }
+      ],
+      "lastAnniversaryCredited": "2026-03-14"
+    },
+    {
+      "employeeId": "emp_003",
+      "hireDate": "2024-09-01",
+      "anniversaryCredits": [
+        {
+          "leaveType": "annual",
+          "creditsPerYear": 5
+        }
+      ],
+      "lastAnniversaryCredited": null
+    }
+  ],
+  "yearlyReset": {
+    "resetType": "calendar",
+    "annualReset": 15,
+    "sickReset": 7,
+    "personalReset": 5,
+    "lastResetDate": "2026-06-24"
+  },
+  "simulationEvents": [
+    {
+      "id": "c7c5dc3b-9dbb-4ee0-8069-9354c801c2ef",
+      "type": "anniversary_credit",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-23",
+      "appliedAt": "2026-06-24T18:35:13.712Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 15
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 9
+        }
+      ]
+    },
+    {
+      "id": "deb2f32b-5822-4ada-bf53-b99edf7109f6",
+      "type": "anniversary_credit",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-03-14",
+      "appliedAt": "2026-06-24T18:35:13.712Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 20
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 13
+        }
+      ]
+    },
+    {
+      "id": "15cd1edf-6511-4be4-91bc-740d0499a1d5",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2025-12-31",
+      "appliedAt": "2026-06-24T18:35:13.713Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 2,
+          "newBalance": 7
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 2,
+          "newBalance": 5
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 6,
+          "newBalance": 15
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 6,
+          "newBalance": 7
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 3,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "2a37188f-24f7-4047-8362-be6dbb153bd2",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2025-12-31",
+      "appliedAt": "2026-06-24T18:35:13.713Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": -5,
+          "newBalance": 15
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 1,
+          "newBalance": 7
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 1,
+          "newBalance": 5
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 2,
+          "newBalance": 15
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 3,
+          "newBalance": 7
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 3,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "8da606f3-7d52-491e-8d55-ad3b9b8673bd",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2025-12-31",
+      "appliedAt": "2026-06-24T18:35:13.713Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 15
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 4,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "2bf0125a-e4d1-41a5-a34d-cd0fb3fa8b91",
+      "type": "anniversary_credit",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:44:51.050Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 20
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 20
+        }
+      ]
+    },
+    {
+      "id": "a39963b9-42db-48f8-bd9a-a597e2fd42de",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:44:55.644Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": -5,
+          "newBalance": 15
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": -5,
+          "newBalance": 15
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "0a0eb725-60e0-4efd-81f7-9d06d101d8e2",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:44:55.644Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "b90e5ea6-d990-4f51-bd52-78761c1893b2",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:44:55.645Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "42d80c63-3013-4376-850a-f92d9a32d453",
+      "type": "anniversary_credit",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:45:11.423Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 20
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 20
+        }
+      ]
+    },
+    {
+      "id": "634db86c-d9be-408c-9294-4e42bb19a131",
+      "type": "anniversary_credit",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:45:20.046Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 25
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 25
+        }
+      ]
+    },
+    {
+      "id": "bcdb801b-43fe-4bc5-a7ac-1a9780bcc122",
+      "type": "anniversary_credit",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:46:27.160Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 30
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 30
+        }
+      ]
+    },
+    {
+      "id": "6ba2643a-3777-4afe-a1dc-8f66f0e54c05",
+      "type": "anniversary_credit",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:46:29.564Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 35
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 35
+        }
+      ]
+    },
+    {
+      "id": "463667e8-e41c-487b-9605-d025a2519c6c",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:46:36.909Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": -20,
+          "newBalance": 15
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": -20,
+          "newBalance": 15
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "4a8aae6e-d5f6-4a9e-adb0-d08d18deed42",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:46:36.909Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "aa7ab4eb-8691-4bb2-9489-c3656900a3a0",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:46:36.909Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "a021abaa-264b-45e1-8269-d05f23b177c5",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:46:41.291Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "96994961-3163-4c8e-90eb-4eab0432c3d8",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:46:41.291Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "2b9e7b18-5e61-4ac1-920d-e34295617171",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:46:41.291Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "b7d0540f-b18a-48e1-9656-e3c9f806a7c6",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:46:42.225Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "fe209140-47cf-44cd-89ac-372743774879",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:46:42.225Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "b31bc597-78f5-4183-95f7-e4234a7b080a",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:46:42.225Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 0,
+          "newBalance": 15
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 0,
+          "newBalance": 7
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 0,
+          "newBalance": 5
+        }
+      ]
+    },
+    {
+      "id": "fee1689b-48f7-4517-9175-54b9c14876a0",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:54:59.560Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 30
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 14
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 10
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 30
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 14
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 10
+        }
+      ]
+    },
+    {
+      "id": "e46bf470-44cd-427d-9d02-8d597df019d5",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:54:59.560Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 30
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 14
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 10
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 30
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 14
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 10
+        }
+      ]
+    },
+    {
+      "id": "28e5d8b3-782a-4f88-a7a3-e1f725234167",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:54:59.560Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 30
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 14
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 10
+        }
+      ]
+    },
+    {
+      "id": "e311cc58-6acb-4597-b5d7-36f4dce759e0",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:04.885Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 45
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 21
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 15
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 45
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 21
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 15
+        }
+      ]
+    },
+    {
+      "id": "5995e290-fcf5-4f53-b8cc-c61efed618e9",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:04.885Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 45
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 21
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 15
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 45
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 21
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 15
+        }
+      ]
+    },
+    {
+      "id": "f91ee2ff-8cc0-419f-9f8f-09b7e7895818",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:04.885Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 45
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 21
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 15
+        }
+      ]
+    },
+    {
+      "id": "2a16f2f0-c3dd-4ac6-93a8-59ab44aebdf7",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:07.918Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 60
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 28
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 20
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 60
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 28
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 20
+        }
+      ]
+    },
+    {
+      "id": "c75da931-f765-4de4-95c8-19229c23bd4f",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:07.918Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 60
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 28
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 20
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 60
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 28
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 20
+        }
+      ]
+    },
+    {
+      "id": "79e3507b-d064-4f36-b210-a9434e191eaa",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:07.918Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 60
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 28
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 20
+        }
+      ]
+    },
+    {
+      "id": "08615018-d779-4f9c-a54c-fa7fbd49cbb3",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:08.779Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 75
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 35
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 25
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 75
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 35
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 25
+        }
+      ]
+    },
+    {
+      "id": "b707b8cf-b4c2-4a73-93b7-2c44b90f241e",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:08.779Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 75
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 35
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 25
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 75
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 35
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 25
+        }
+      ]
+    },
+    {
+      "id": "87932367-0154-4bad-a4c5-5634d1a32937",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:08.779Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 75
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 35
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 25
+        }
+      ]
+    },
+    {
+      "id": "dcd483a2-5560-4cd8-98c9-6d1a9b2821c2",
+      "type": "anniversary_credit",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:16.396Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 80
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 5,
+          "newBalance": 80
+        }
+      ]
+    },
+    {
+      "id": "81179463-37d6-403a-a575-90ab17471832",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:21.001Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 95
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 42
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 30
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 95
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 42
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 30
+        }
+      ]
+    },
+    {
+      "id": "9e53646d-8e69-4593-a643-15cfe096f6b6",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:21.001Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 90
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 42
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 30
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 90
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 42
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 30
+        }
+      ]
+    },
+    {
+      "id": "ed56105f-34be-4c3e-aca2-ede67c9c9304",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:21.001Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 90
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 42
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 30
+        }
+      ]
+    },
+    {
+      "id": "160c90a3-b40c-4e92-8cee-ef0eccb636a1",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:22.986Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 110
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 49
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 35
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 110
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 49
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 35
+        }
+      ]
+    },
+    {
+      "id": "50a2804e-65a9-464c-a802-0cd814c73a01",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:22.986Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 105
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 49
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 35
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 105
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 49
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 35
+        }
+      ]
+    },
+    {
+      "id": "39ea027b-c711-4bb4-a5ca-e168bf1c404b",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:22.986Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 105
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 49
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 35
+        }
+      ]
+    },
+    {
+      "id": "f4766591-8807-47fb-a226-6e7734c14828",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:25.419Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 125
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 56
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 40
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 125
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 56
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 40
+        }
+      ]
+    },
+    {
+      "id": "445f2e28-3f31-45a0-bce7-f8009f736f81",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:25.419Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 120
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 56
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 40
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 120
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 56
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 40
+        }
+      ]
+    },
+    {
+      "id": "05183003-412b-4828-835c-17c230f2cda6",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:25.419Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 120
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 56
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 40
+        }
+      ]
+    },
+    {
+      "id": "38a5a174-0867-44a4-876a-40e25ebf7453",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:27.500Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 140
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 63
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 45
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 140
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 63
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 45
+        }
+      ]
+    },
+    {
+      "id": "37fe726f-30b1-48dc-912a-bdd4a85ab0f7",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:27.500Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 135
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 63
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 45
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 135
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 63
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 45
+        }
+      ]
+    },
+    {
+      "id": "85098c83-bf14-4242-8027-83eca9b80284",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:27.500Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 135
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 63
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 45
+        }
+      ]
+    },
+    {
+      "id": "3efeb890-a198-4025-b6f1-7be2829d48e6",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:30.284Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 155
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 70
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 50
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 155
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 70
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 50
+        }
+      ]
+    },
+    {
+      "id": "5a040f98-867a-4550-97b5-4f4be2cb96d5",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:30.284Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 150
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 70
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 50
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 150
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 70
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 50
+        }
+      ]
+    },
+    {
+      "id": "e9a1da2b-9fb3-4132-b4d7-fc0fecb70372",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:30.284Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 150
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 70
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 50
+        }
+      ]
+    },
+    {
+      "id": "c8872720-6998-4b7f-bb78-7df2ac7ff850",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:30.985Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 170
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 77
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 55
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 170
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 77
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 55
+        }
+      ]
+    },
+    {
+      "id": "6832fb18-953c-4517-9984-9b4aa909aecc",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:30.985Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 165
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 77
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 55
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 165
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 77
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 55
+        }
+      ]
+    },
+    {
+      "id": "d1ddd1e2-a12e-4518-befb-c5da6227dfd2",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:30.985Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 165
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 77
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 55
+        }
+      ]
+    },
+    {
+      "id": "c1ce045c-79bd-48bb-8205-5a6269feff38",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:31.667Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 185
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 84
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 60
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 185
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 84
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 60
+        }
+      ]
+    },
+    {
+      "id": "748c06a5-cd5d-44ac-a06a-f1b87348bc5d",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:31.667Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 180
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 84
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 60
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 180
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 84
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 60
+        }
+      ]
+    },
+    {
+      "id": "4301067b-5177-4722-ba81-ce0506763c44",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:31.667Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 180
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 84
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 60
+        }
+      ]
+    },
+    {
+      "id": "6d42b7e5-b852-4e3b-ad91-f8762d74afbb",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:32.302Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 200
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 91
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 65
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 200
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 91
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 65
+        }
+      ]
+    },
+    {
+      "id": "a15c19b2-1869-422b-a32c-2567ec9f3927",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:32.302Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 195
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 91
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 65
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 195
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 91
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 65
+        }
+      ]
+    },
+    {
+      "id": "dd061186-896d-4709-a571-27252fd505cc",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:32.302Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 195
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 91
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 65
+        }
+      ]
+    },
+    {
+      "id": "d88f41a5-272e-402d-896e-d4e20927e57e",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:32.501Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 215
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 98
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 70
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 215
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 98
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 70
+        }
+      ]
+    },
+    {
+      "id": "7f392845-fe3b-4193-8311-f5de4af521da",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:32.501Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 210
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 98
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 70
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 210
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 98
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 70
+        }
+      ]
+    },
+    {
+      "id": "0a1422cd-9fc0-4512-a330-d698175889c8",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:32.501Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 210
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 98
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 70
+        }
+      ]
+    },
+    {
+      "id": "985e6160-04f6-474a-986d-f909a9d267c4",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:32.683Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 230
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 105
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 75
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 230
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 105
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 75
+        }
+      ]
+    },
+    {
+      "id": "0197415b-c8e4-44a8-9ebe-d9d664ab7ffc",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:32.683Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 225
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 105
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 75
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 225
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 105
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 75
+        }
+      ]
+    },
+    {
+      "id": "011c9de8-972b-43a4-98f2-720587dc694c",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:32.683Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 225
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 105
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 75
+        }
+      ]
+    },
+    {
+      "id": "94616021-eaca-4246-a474-382274f2c558",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:32.848Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 245
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 112
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 80
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 245
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 112
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 80
+        }
+      ]
+    },
+    {
+      "id": "45576d8d-f183-48ee-8308-82a6f4e0d174",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:32.848Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 240
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 112
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 80
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 240
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 112
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 80
+        }
+      ]
+    },
+    {
+      "id": "4d9b979c-57cc-4bee-b054-5bd7e51686a3",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:32.848Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 240
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 112
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 80
+        }
+      ]
+    },
+    {
+      "id": "d9c45cc9-1911-456f-98af-64726412a18e",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:33.013Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 260
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 119
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 85
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 260
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 119
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 85
+        }
+      ]
+    },
+    {
+      "id": "21b4fc40-8394-4119-a81e-f46f3e8e5d17",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:33.013Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 255
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 119
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 85
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 255
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 119
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 85
+        }
+      ]
+    },
+    {
+      "id": "0606901f-006a-429f-817f-0491ddd6abd2",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:33.013Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 255
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 119
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 85
+        }
+      ]
+    },
+    {
+      "id": "1af8d5a7-7698-48c7-8f43-174ff796e50c",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:33.199Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 275
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 126
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 90
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 275
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 126
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 90
+        }
+      ]
+    },
+    {
+      "id": "5e126b5e-318e-4e3f-9f23-a92c3a0cd6ba",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:33.199Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 270
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 126
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 90
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 270
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 126
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 90
+        }
+      ]
+    },
+    {
+      "id": "e8d4f33a-dea6-45e9-9dac-e5d21728c8eb",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:33.199Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 270
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 126
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 90
+        }
+      ]
+    },
+    {
+      "id": "d5bf6324-dd9a-406c-ae77-fdd603d93646",
+      "type": "yearly_reset",
+      "employeeId": "emp_001",
+      "employeeName": "John Smith",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:33.364Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 290
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 133
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 95
+        },
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 290
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 133
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 95
+        }
+      ]
+    },
+    {
+      "id": "a89a01c7-2d7c-46b1-8ce9-e615fdaf4377",
+      "type": "yearly_reset",
+      "employeeId": "emp_002",
+      "employeeName": "Sarah Johnson",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:33.364Z",
+      "changes": [
+        {
+          "location": "NY",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 285
+        },
+        {
+          "location": "NY",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 133
+        },
+        {
+          "location": "NY",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 95
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 285
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 133
+        },
+        {
+          "location": "Singapore",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 95
+        }
+      ]
+    },
+    {
+      "id": "c621da32-2a06-40ad-b02c-6e7d9881bdfc",
+      "type": "yearly_reset",
+      "employeeId": "emp_003",
+      "employeeName": "Marcus Chen",
+      "dueDate": "2026-06-24",
+      "appliedAt": "2026-06-24T18:55:33.364Z",
+      "changes": [
+        {
+          "location": "London",
+          "leaveType": "annual",
+          "delta": 15,
+          "newBalance": 285
+        },
+        {
+          "location": "London",
+          "leaveType": "sick",
+          "delta": 7,
+          "newBalance": 133
+        },
+        {
+          "location": "London",
+          "leaveType": "personal",
+          "delta": 5,
+          "newBalance": 95
+        }
+      ]
+    }
+  ]
+}

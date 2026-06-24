@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HCM Leave Management System - Technical Reference Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .gradient-text {
+      background: linear-gradient(135deg, #d97706 0%, #ea580c 50%, #dc2626 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .code-block {
+      background: linear-gradient(135deg, #292524 0%, #1c1917 100%);
+    }
+    details[open] summary::after {
+      transform: rotate(180deg);
+    }
+    summary::after {
+      content: '▼';
+      font-size: 0.75rem;
+      transition: transform 0.2s ease;
+    }
+    .pattern-bg {
+      background-image: radial-gradient(circle at 1px 1px, rgba(168, 162, 158, 0.15) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-900 font-sans antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-50/80 backdrop-blur-lg border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-linear-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg">HCM Leave Management</h1>
+            <p class="text-xs text-stone-500">Technical Reference Document</p>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
+          <a href="#overview" class="hover:text-amber-600 transition-colors">Overview</a>
+          <a href="#frontend" class="hover:text-amber-600 transition-colors">Frontend</a>
+          <a href="#backend" class="hover:text-amber-600 transition-colors">Backend</a>
+          <a href="#optimistic" class="hover:text-amber-600 transition-colors">Optimistic Updates</a>
+          <a href="#challenges" class="hover:text-amber-600 transition-colors">Challenges</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="pt-32 pb-20 pattern-bg">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-4xl">
+        <div class="flex items-center gap-2 mb-6">
+          <span class="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-semibold rounded-full">v1.0</span>
+          <span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full">Next.js 16</span>
+          <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-semibold rounded-full">React 19</span>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
+          <span class="gradient-text">Technical Reference</span><br>
+          <span class="text-stone-900">Document</span>
+        </h1>
+        <p class="text-xl text-stone-600 leading-relaxed mb-8">
+          A comprehensive technical document covering the architecture, implementation patterns,
+          challenges, and solutions for the HCM Leave Management System built with modern React patterns
+          and real-time synchronization.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-stone-200">
+            <div class="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+            <span class="text-sm font-medium">Real-time SSE</span>
+          </div>
+          <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-stone-200">
+            <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+            <span class="text-sm font-medium">TanStack Query v5</span>
+          </div>
+          <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-stone-200">
+            <div class="w-2 h-2 bg-yellow-600 rounded-full"></div>
+            <span class="text-sm font-medium">Optimistic Updates</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 pb-24">
+
+    <!-- Section 1: Executive Summary -->
+    <section id="overview" class="py-16 border-b border-stone-200">
+      <div class="grid lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+            <span class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-lg font-bold">1</span>
+            Executive Summary
+          </h2>
+          <p class="text-lg text-stone-600 leading-relaxed mb-6">
+            The HCM Leave Management System is a full-stack web application that enables employees to request time off,
+            managers to approve or reject requests, and administrators to manage employee balances across multiple locations.
+            The system emphasizes <strong>real-time synchronization</strong>, <strong>optimistic user experiences</strong>,
+            and <strong>role-based access control</strong>.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="p-4 bg-white rounded-xl border border-stone-200 shadow-sm">
+              <div class="text-2xl font-bold text-amber-600 mb-1">3</div>
+              <div class="text-sm text-stone-600">User Roles (Employee, Manager, Admin)</div>
+            </div>
+            <div class="p-4 bg-white rounded-xl border border-stone-200 shadow-sm">
+              <div class="text-2xl font-bold text-orange-600 mb-1">4</div>
+              <div class="text-sm text-stone-600">SSE Event Types for Real-time Sync</div>
+            </div>
+            <div class="p-4 bg-white rounded-xl border border-stone-200 shadow-sm">
+              <div class="text-2xl font-bold text-yellow-600 mb-1">3</div>
+              <div class="text-sm text-stone-600">Leave Types (Annual, Sick, Personal)</div>
+            </div>
+            <div class="p-4 bg-white rounded-xl border border-stone-200 shadow-sm">
+              <div class="text-2xl font-bold text-rose-600 mb-1">Multi</div>
+              <div class="text-sm text-stone-600">Location Support (NY, London, Singapore)</div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-1">
+          <div class="sticky top-24">
+            <h3 class="text-sm font-semibold text-stone-500 uppercase tracking-wider mb-4">Tech Stack</h3>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-stone-200">
+                <div class="w-8 h-8 bg-stone-800 rounded-lg flex items-center justify-center text-white text-xs font-bold">N</div>
+                <div>
+                  <div class="font-semibold text-sm">Next.js 16</div>
+                  <div class="text-xs text-stone-500">App Router + React 19</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-stone-200">
+                <div class="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center text-white text-xs font-bold">TQ</div>
+                <div>
+                  <div class="font-semibold text-sm">TanStack Query v5</div>
+                  <div class="text-xs text-stone-500">Server State Management</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-stone-200">
+                <div class="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center text-white text-xs font-bold">Z</div>
+                <div>
+                  <div class="font-semibold text-sm">Zustand v5</div>
+                  <div class="text-xs text-stone-500">Client State (Auth Only)</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-stone-200">
+                <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center text-white text-xs font-bold">T</div>
+                <div>
+                  <div class="font-semibold text-sm">Tailwind CSS v4</div>
+                  <div class="text-xs text-stone-500">Utility-first Styling</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-stone-200">
+                <div class="w-8 h-8 bg-rose-500 rounded-lg flex items-center justify-center text-white text-xs font-bold">S</div>
+                <div>
+                  <div class="font-semibold text-sm">Storybook 10</div>
+                  <div class="text-xs text-stone-500">Component Development</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-stone-200">
+                <div class="w-8 h-8 bg-yellow-600 rounded-lg flex items-center justify-center text-white text-xs font-bold">V</div>
+                <div>
+                  <div class="font-semibold text-sm">Vitest 4</div>
+                  <div class="text-xs text-stone-500">Testing Framework</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: System Architecture -->
+    <section class="py-16 border-b border-stone-200">
+      <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+        <span class="w-10 h-10 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center text-lg font-bold">2</span>
+        System Architecture
+      </h2>
+
+      <div class="bg-stone-900 rounded-2xl p-8 mb-8 overflow-x-auto">
+        <pre class="text-sm text-stone-300 font-mono leading-relaxed"><code>┌─────────────────────────────────────────────────────────────────────────────┐
+│                              <span class="text-amber-400">CLIENT (Browser)</span>                              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌─────────────┐   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐     │
+│  │  <span class="text-orange-400">Employee</span>   │   │   <span class="text-amber-400">Manager</span>   │   │    <span class="text-yellow-400">Admin</span>    │   │   <span class="text-stone-400">Login</span>     │     │
+│  │  Dashboard  │   │  Dashboard  │   │  Dashboard  │   │    Page     │     │
+│  └──────┬──────┘   └──────┬──────┘   └──────┬──────┘   └─────────────┘     │
+│         │                 │                 │                               │
+│  ┌──────▼─────────────────▼─────────────────▼──────┐                       │
+│  │              <span class="text-orange-400">Custom React Hooks</span>                   │                       │
+│  │  useEmployeeLeave │ useManagerLeave │ useAdminLeave                     │
+│  └──────────────────────────┬──────────────────────┘                       │
+│                             │                                               │
+│  ┌──────────────────────────▼──────────────────────┐                       │
+│  │           <span class="text-red-400">TanStack Query + useLeaveSSE</span>           │                       │
+│  │    Optimistic Updates │ Background Refresh     │                       │
+│  └──────────────────────────┬──────────────────────┘                       │
+│                             │                                               │
+├─────────────────────────────┼───────────────────────────────────────────────┤
+│                             │  <span class="text-amber-400">HTTP + SSE</span>                                   │
+├─────────────────────────────┼───────────────────────────────────────────────┤
+│                             │                                               │
+│                      <span class="text-amber-400">SERVER (Next.js API Routes)</span>                          │
+│                                                                             │
+│  ┌───────────────────────────────────────────────────────────────────┐     │
+│  │                        <span class="text-orange-400">API Routes</span>                                │     │
+│  │  /api/auth/*  │  /api/leave/*  │  /api/admin/*  │  /api/leave/stream   │
+│  └───────────────────────────────────────────────────────────────────┘     │
+│                             │                                               │
+│  ┌──────────────────────────▼──────────────────────┐                       │
+│  │              <span class="text-yellow-400">Business Logic Layer</span>               │                       │
+│  │     auth.ts  │  hcm.ts  │  sse.ts (EventEmitter)                       │
+│  └──────────────────────────┬──────────────────────┘                       │
+│                             │                                               │
+│  ┌──────────────────────────▼──────────────────────┐                       │
+│  │              <span class="text-amber-400">Data Persistence</span>                    │                       │
+│  │                   hcm-data.json                 │                       │
+│  └─────────────────────────────────────────────────┘                       │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘</code></pre>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-linear-to-br from-amber-50 to-amber-100 rounded-xl p-6 border border-amber-200">
+          <div class="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2 text-amber-900">Presentation Layer</h3>
+          <p class="text-sm text-amber-700">React components with role-based dashboards, form handling, and real-time status indicators.</p>
+        </div>
+        <div class="bg-linear-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+          <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2 text-orange-900">State Management</h3>
+          <p class="text-sm text-orange-700">TanStack Query for server state with optimistic mutations, Zustand for auth persistence.</p>
+        </div>
+        <div class="bg-linear-to-br from-yellow-50 to-yellow-100 rounded-xl p-6 border border-yellow-200">
+          <div class="w-12 h-12 bg-yellow-600 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2 text-yellow-900">Real-time Sync</h3>
+          <p class="text-sm text-yellow-700">Server-Sent Events (SSE) broadcast changes to all connected clients with retry logic.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Frontend Architecture -->
+    <section id="frontend" class="py-16 border-b border-stone-200">
+      <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+        <span class="w-10 h-10 rounded-lg bg-yellow-100 text-yellow-700 flex items-center justify-center text-lg font-bold">3</span>
+        Frontend Architecture
+      </h2>
+
+      <!-- Component Hierarchy -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-4">Component Hierarchy</h3>
+        <div class="bg-white rounded-xl border border-stone-200 p-6 overflow-x-auto">
+          <pre class="text-sm font-mono text-stone-700"><code>src/
+├── <span class="text-orange-600 font-semibold">app/</span>                           <span class="text-stone-400"># Next.js App Router</span>
+│   ├── layout.tsx                 <span class="text-stone-400"># Root layout with Providers + NavBar</span>
+│   ├── page.tsx                   <span class="text-stone-400"># Home page (redirects by role)</span>
+│   ├── login/page.tsx             <span class="text-stone-400"># Authentication entry</span>
+│   ├── employee/page.tsx          <span class="text-stone-400"># Employee dashboard</span>
+│   ├── manager/page.tsx           <span class="text-stone-400"># Manager dashboard</span>
+│   └── admin/page.tsx             <span class="text-stone-400"># Admin dashboard</span>
+│
+├── <span class="text-amber-600 font-semibold">components/</span>
+│   ├── AuthGuard.tsx              <span class="text-stone-400"># Role-based route protection</span>
+│   ├── NavBar.tsx                 <span class="text-stone-400"># Auth-aware navigation</span>
+│   ├── Providers.tsx              <span class="text-stone-400"># QueryClientProvider wrapper</span>
+│   └── <span class="text-yellow-600 font-semibold">leave/</span>                     <span class="text-stone-400"># Domain-specific components</span>
+│       ├── LeaveRequestForm.tsx   <span class="text-stone-400"># Form with validation</span>
+│       ├── BalanceGrid.tsx        <span class="text-stone-400"># Balance cards layout</span>
+│       ├── BalanceCard.tsx        <span class="text-stone-400"># Individual balance display</span>
+│       ├── BalanceCell.tsx        <span class="text-stone-400"># Editable admin cell</span>
+│       ├── EmployeeTable.tsx      <span class="text-stone-400"># Admin roster view</span>
+│       ├── RequestList.tsx        <span class="text-stone-400"># Segmented request list</span>
+│       ├── RequestCard.tsx        <span class="text-stone-400"># Request with actions</span>
+│       ├── SyncIndicator.tsx      <span class="text-stone-400"># SSE connection status</span>
+│       ├── StatusBadge.tsx        <span class="text-stone-400"># Request status badge</span>
+│       ├── Toast.tsx              <span class="text-stone-400"># Notification component</span>
+│       └── ToastContainer.tsx     <span class="text-stone-400"># Toast queue manager</span>
+│
+├── <span class="text-red-600 font-semibold">hooks/</span>
+│   ├── useEmployeeLeave.ts        <span class="text-stone-400"># Employee state + mutations</span>
+│   ├── useManagerLeave.ts         <span class="text-stone-400"># Manager state + decisions</span>
+│   ├── useAdminLeave.ts           <span class="text-stone-400"># Admin state + HCM sync</span>
+│   └── useLeaveSSE.ts             <span class="text-stone-400"># SSE subscription hook</span>
+│
+├── <span class="text-rose-600 font-semibold">store/</span>
+│   └── authStore.ts               <span class="text-stone-400"># Zustand auth with persistence</span>
+│
+└── <span class="text-orange-600 font-semibold">lib/</span>
+    ├── types.ts                   <span class="text-stone-400"># TypeScript interfaces</span>
+    ├── queryClient.ts             <span class="text-stone-400"># TanStack Query config</span>
+    └── queryKeys.ts               <span class="text-stone-400"># Centralized query keys</span></code></pre>
+        </div>
+      </div>
+
+      <!-- State Management -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-4">State Management Pattern</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-xl border border-stone-200 p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                <span class="text-red-600 font-bold text-sm">TQ</span>
+              </div>
+              <div>
+                <h4 class="font-semibold">TanStack Query v5</h4>
+                <p class="text-sm text-stone-500">Server State</p>
+              </div>
+            </div>
+            <ul class="space-y-2 text-sm text-stone-600">
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span>Caching with 30s staleTime</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span>Automatic retry (3 attempts)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span>Optimistic mutations with rollback</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span>SSE-triggered invalidation</span>
+              </li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-xl border border-stone-200 p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
+                <span class="text-amber-600 font-bold text-sm">Z</span>
+              </div>
+              <div>
+                <h4 class="font-semibold">Zustand v5</h4>
+                <p class="text-sm text-stone-500">Client State (Auth)</p>
+              </div>
+            </div>
+            <ul class="space-y-2 text-sm text-stone-600">
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span>Minimal footprint (auth only)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span>localStorage persistence</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span>Partialize for selective hydration</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span>login / logout / clearError actions</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Query Keys -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-4">Query Key Organization</h3>
+        <div class="code-block rounded-xl p-6">
+          <pre class="text-sm font-mono"><code class="text-stone-300"><span class="text-stone-500">// src/lib/queryKeys.ts</span>
+<span class="text-rose-400">export const</span> queryKeys = {
+  <span class="text-amber-400">balances</span>: {
+    <span class="text-orange-400">all</span>: [<span class="text-yellow-400">'balances'</span>] <span class="text-stone-400">as const</span>,
+    <span class="text-orange-400">byEmployee</span>: (<span class="text-red-400">id</span>: <span class="text-stone-400">string</span>) => [<span class="text-yellow-400">'balances'</span>, id] <span class="text-stone-400">as const</span>,
+  },
+  <span class="text-amber-400">requests</span>: {
+    <span class="text-orange-400">all</span>: [<span class="text-yellow-400">'requests'</span>] <span class="text-stone-400">as const</span>,
+    <span class="text-orange-400">byEmployee</span>: (<span class="text-red-400">id</span>: <span class="text-stone-400">string</span>) => [<span class="text-yellow-400">'requests'</span>, { <span class="text-orange-400">employeeId</span>: id }] <span class="text-stone-400">as const</span>,
+  },
+  <span class="text-amber-400">admin</span>: {
+    <span class="text-orange-400">employees</span>: [<span class="text-yellow-400">'admin'</span>, <span class="text-yellow-400">'employees'</span>] <span class="text-stone-400">as const</span>,
+  },
+};</code></pre>
+        </div>
+      </div>
+
+      <!-- Real-time SSE -->
+      <div>
+        <h3 class="text-xl font-semibold mb-4">Real-time Updates (SSE)</h3>
+        <div class="bg-linear-to-r from-amber-50 to-orange-50 rounded-xl p-6 border border-amber-200">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="font-semibold mb-3 text-amber-800">Event Types</h4>
+              <div class="space-y-2">
+                <div class="flex items-center gap-3 p-3 bg-white/80 rounded-lg">
+                  <span class="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-mono rounded">balance_updated</span>
+                  <span class="text-sm text-stone-600">Balance changed (approval)</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-white/80 rounded-lg">
+                  <span class="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-mono rounded">request_created</span>
+                  <span class="text-sm text-stone-600">New leave request</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-white/80 rounded-lg">
+                  <span class="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs font-mono rounded">request_decided</span>
+                  <span class="text-sm text-stone-600">Request approved/rejected</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-white/80 rounded-lg">
+                  <span class="px-2 py-1 bg-rose-100 text-rose-700 text-xs font-mono rounded">hcm_sync</span>
+                  <span class="text-sm text-stone-600">Admin balance override</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3 text-orange-800">Connection Features</h4>
+              <ul class="space-y-2 text-sm text-stone-700">
+                <li class="flex items-start gap-2">
+                  <span class="text-orange-500 font-bold">+</span>
+                  <span>Auto-reconnect with exponential backoff (5 retries)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-orange-500 font-bold">+</span>
+                  <span>Duplicate event suppression via seenIds Set</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-orange-500 font-bold">+</span>
+                  <span>Connection status indicator (SyncIndicator)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-orange-500 font-bold">+</span>
+                  <span>Graceful cleanup on component unmount</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-orange-500 font-bold">+</span>
+                  <span>Last sync timestamp tracking</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Backend Architecture -->
+    <section id="backend" class="py-16 border-b border-stone-200">
+      <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+        <span class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center text-lg font-bold">4</span>
+        Backend Architecture
+      </h2>
+
+      <!-- API Routes -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-4">API Route Structure</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-stone-100">
+                <th class="text-left p-4 font-semibold">Endpoint</th>
+                <th class="text-left p-4 font-semibold">Method</th>
+                <th class="text-left p-4 font-semibold">Description</th>
+                <th class="text-left p-4 font-semibold">SSE Broadcast</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr class="bg-white">
+                <td class="p-4 font-mono text-orange-600">/api/auth/login</td>
+                <td class="p-4"><span class="px-2 py-1 bg-amber-100 text-amber-700 rounded text-xs font-semibold">POST</span></td>
+                <td class="p-4 text-stone-600">Authenticate user credentials</td>
+                <td class="p-4 text-stone-400">-</td>
+              </tr>
+              <tr class="bg-stone-50">
+                <td class="p-4 font-mono text-orange-600">/api/auth/me</td>
+                <td class="p-4"><span class="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-semibold">GET</span></td>
+                <td class="p-4 text-stone-600">Get current user (placeholder)</td>
+                <td class="p-4 text-stone-400">-</td>
+              </tr>
+              <tr class="bg-white">
+                <td class="p-4 font-mono text-orange-600">/api/leave/balances</td>
+                <td class="p-4"><span class="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-semibold">GET</span></td>
+                <td class="p-4 text-stone-600">Fetch leave balances (filterable)</td>
+                <td class="p-4 text-stone-400">-</td>
+              </tr>
+              <tr class="bg-stone-50">
+                <td class="p-4 font-mono text-orange-600">/api/leave/requests</td>
+                <td class="p-4"><span class="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-semibold">GET</span></td>
+                <td class="p-4 text-stone-600">List leave requests (filterable)</td>
+                <td class="p-4 text-stone-400">-</td>
+              </tr>
+              <tr class="bg-white">
+                <td class="p-4 font-mono text-orange-600">/api/leave/requests</td>
+                <td class="p-4"><span class="px-2 py-1 bg-amber-100 text-amber-700 rounded text-xs font-semibold">POST</span></td>
+                <td class="p-4 text-stone-600">Create new leave request</td>
+                <td class="p-4"><span class="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-mono">request_created</span></td>
+              </tr>
+              <tr class="bg-stone-50">
+                <td class="p-4 font-mono text-orange-600">/api/leave/requests/[id]</td>
+                <td class="p-4"><span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-semibold">PATCH</span></td>
+                <td class="p-4 text-stone-600">Approve/reject request</td>
+                <td class="p-4">
+                  <span class="px-2 py-1 bg-rose-100 text-rose-700 rounded text-xs font-mono">request_decided</span>
+                  <span class="px-2 py-1 bg-amber-100 text-amber-700 rounded text-xs font-mono ml-1">balance_updated</span>
+                </td>
+              </tr>
+              <tr class="bg-white">
+                <td class="p-4 font-mono text-orange-600">/api/leave/hcm/balances</td>
+                <td class="p-4"><span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-semibold">PATCH</span></td>
+                <td class="p-4 text-stone-600">Admin balance override</td>
+                <td class="p-4"><span class="px-2 py-1 bg-rose-100 text-rose-700 rounded text-xs font-mono">hcm_sync</span></td>
+              </tr>
+              <tr class="bg-stone-50">
+                <td class="p-4 font-mono text-orange-600">/api/leave/stream</td>
+                <td class="p-4"><span class="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-semibold">GET</span></td>
+                <td class="p-4 text-stone-600">SSE event stream endpoint</td>
+                <td class="p-4 text-stone-400">-</td>
+              </tr>
+              <tr class="bg-white">
+                <td class="p-4 font-mono text-orange-600">/api/admin/employees</td>
+                <td class="p-4"><span class="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-semibold">GET</span></td>
+                <td class="p-4 text-stone-600">Admin employee roster with balances</td>
+                <td class="p-4 text-stone-400">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Data Persistence -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-4">Data Persistence Layer</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-xl border border-stone-200 p-6">
+            <h4 class="font-semibold mb-3">Data Access Functions (hcm.ts)</h4>
+            <div class="space-y-2 text-sm font-mono">
+              <div class="p-2 bg-stone-50 rounded"><span class="text-rose-600">getBalances</span>(employeeId?, location?)</div>
+              <div class="p-2 bg-stone-50 rounded"><span class="text-rose-600">getBalance</span>(employeeId, location, leaveType)</div>
+              <div class="p-2 bg-stone-50 rounded"><span class="text-rose-600">updateBalance</span>(employeeId, location, leaveType, newBalance)</div>
+              <div class="p-2 bg-stone-50 rounded"><span class="text-rose-600">getRequests</span>(filters)</div>
+              <div class="p-2 bg-stone-50 rounded"><span class="text-rose-600">createRequest</span>(body)</div>
+              <div class="p-2 bg-stone-50 rounded"><span class="text-rose-600">updateRequest</span>(id, updates)</div>
+              <div class="p-2 bg-stone-50 rounded"><span class="text-rose-600">getPendingDays</span>(employeeId, location, leaveType)</div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl border border-stone-200 p-6">
+            <h4 class="font-semibold mb-3">Data Schema (hcm-data.json)</h4>
+            <div class="code-block rounded-lg p-4">
+              <pre class="text-xs font-mono text-stone-300"><code>{
+  <span class="text-amber-400">"users"</span>: [{
+    <span class="text-orange-400">id</span>, <span class="text-orange-400">email</span>, <span class="text-orange-400">password</span>,
+    <span class="text-orange-400">name</span>, <span class="text-orange-400">role</span>, <span class="text-orange-400">employeeId</span>
+  }],
+  <span class="text-amber-400">"balances"</span>: [{
+    <span class="text-orange-400">employeeId</span>, <span class="text-orange-400">location</span>,
+    <span class="text-orange-400">leaveType</span>, <span class="text-orange-400">balance</span>, <span class="text-orange-400">updatedAt</span>
+  }],
+  <span class="text-amber-400">"requests"</span>: [{
+    <span class="text-orange-400">id</span>, <span class="text-orange-400">employeeId</span>, <span class="text-orange-400">employeeName</span>,
+    <span class="text-orange-400">location</span>, <span class="text-orange-400">leaveType</span>, <span class="text-orange-400">startDate</span>,
+    <span class="text-orange-400">endDate</span>, <span class="text-orange-400">days</span>, <span class="text-orange-400">reason</span>, <span class="text-orange-400">status</span>,
+    <span class="text-orange-400">submittedAt</span>, <span class="text-orange-400">decidedAt</span>?, <span class="text-orange-400">decidedBy</span>?
+  }]
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error Handling -->
+      <div>
+        <h3 class="text-xl font-semibold mb-4">Error Handling Strategy</h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2 py-1 bg-red-200 text-red-800 text-xs font-bold rounded">400</span>
+              <span class="font-semibold text-red-800">VALIDATION_ERROR</span>
+            </div>
+            <p class="text-sm text-red-700">Missing or invalid request fields</p>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2 py-1 bg-amber-200 text-amber-800 text-xs font-bold rounded">401</span>
+              <span class="font-semibold text-amber-800">INVALID_CREDENTIALS</span>
+            </div>
+            <p class="text-sm text-amber-700">Authentication failed</p>
+          </div>
+          <div class="bg-orange-50 border border-orange-200 rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2 py-1 bg-orange-200 text-orange-800 text-xs font-bold rounded">404</span>
+              <span class="font-semibold text-orange-800">NOT_FOUND</span>
+            </div>
+            <p class="text-sm text-orange-700">Resource does not exist</p>
+          </div>
+          <div class="bg-rose-50 border border-rose-200 rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2 py-1 bg-rose-200 text-rose-800 text-xs font-bold rounded">409</span>
+              <span class="font-semibold text-rose-800">ALREADY_DECIDED</span>
+            </div>
+            <p class="text-sm text-rose-700">Request already approved/rejected</p>
+          </div>
+          <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2 py-1 bg-yellow-200 text-yellow-800 text-xs font-bold rounded">422</span>
+              <span class="font-semibold text-yellow-800">INSUFFICIENT_BALANCE</span>
+            </div>
+            <p class="text-sm text-yellow-700">Not enough leave days available</p>
+          </div>
+          <div class="bg-stone-100 border border-stone-300 rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2 py-1 bg-stone-300 text-stone-800 text-xs font-bold rounded">500</span>
+              <span class="font-semibold text-stone-800">INTERNAL_ERROR</span>
+            </div>
+            <p class="text-sm text-stone-700">Unexpected server error</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Data Models -->
+    <section class="py-16 border-b border-stone-200">
+      <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+        <span class="w-10 h-10 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center text-lg font-bold">5</span>
+        Data Models & Type Contracts
+      </h2>
+
+      <div class="code-block rounded-xl p-6 overflow-x-auto">
+        <pre class="text-sm font-mono"><code class="text-stone-300"><span class="text-stone-500">// src/lib/types.ts</span>
+
+<span class="text-stone-500">// Enum-like unions for type safety</span>
+<span class="text-rose-400">export type</span> <span class="text-orange-400">LeaveType</span> = <span class="text-yellow-400">'annual'</span> | <span class="text-yellow-400">'sick'</span> | <span class="text-yellow-400">'personal'</span>;
+<span class="text-rose-400">export type</span> <span class="text-orange-400">UserRole</span> = <span class="text-yellow-400">'employee'</span> | <span class="text-yellow-400">'manager'</span> | <span class="text-yellow-400">'admin'</span>;
+<span class="text-rose-400">export type</span> <span class="text-orange-400">RequestStatus</span> = <span class="text-yellow-400">'pending'</span> | <span class="text-yellow-400">'approved'</span> | <span class="text-yellow-400">'rejected'</span>;
+
+<span class="text-stone-500">// Core domain entities</span>
+<span class="text-rose-400">export interface</span> <span class="text-orange-400">User</span> {
+  <span class="text-amber-400">id</span>: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">email</span>: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">name</span>: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">role</span>: <span class="text-orange-400">UserRole</span>;
+  <span class="text-amber-400">employeeId</span>: <span class="text-stone-400">string</span> | <span class="text-stone-400">null</span>;  <span class="text-stone-500">// null for managers</span>
+}
+
+<span class="text-rose-400">export interface</span> <span class="text-orange-400">HCMBalance</span> {
+  <span class="text-amber-400">employeeId</span>: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">location</span>: <span class="text-stone-400">string</span>;           <span class="text-stone-500">// Composite key part</span>
+  <span class="text-amber-400">leaveType</span>: <span class="text-orange-400">LeaveType</span>;       <span class="text-stone-500">// Composite key part</span>
+  <span class="text-amber-400">balance</span>: <span class="text-stone-400">number</span>;
+  <span class="text-amber-400">updatedAt</span>: <span class="text-stone-400">string</span>;         <span class="text-stone-500">// ISO8601</span>
+}
+
+<span class="text-rose-400">export interface</span> <span class="text-orange-400">LeaveRequest</span> {
+  <span class="text-amber-400">id</span>: <span class="text-stone-400">string</span>;                   <span class="text-stone-500">// UUID</span>
+  <span class="text-amber-400">employeeId</span>: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">employeeName</span>: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">location</span>: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">leaveType</span>: <span class="text-orange-400">LeaveType</span>;
+  <span class="text-amber-400">startDate</span>: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">endDate</span>: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">days</span>: <span class="text-stone-400">number</span>;
+  <span class="text-amber-400">reason</span>: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">status</span>: <span class="text-orange-400">RequestStatus</span>;
+  <span class="text-amber-400">submittedAt</span>: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">decidedAt</span>?: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">decidedBy</span>?: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">managerNote</span>?: <span class="text-stone-400">string</span>;
+  <span class="text-amber-400">balanceAtDecision</span>?: <span class="text-stone-400">number</span>;  <span class="text-stone-500">// Snapshot at approval</span>
+  <span class="text-amber-400">isOptimistic</span>?: <span class="text-stone-400">boolean</span>;      <span class="text-stone-500">// Client-side flag</span>
+}
+
+<span class="text-rose-400">export interface</span> <span class="text-orange-400">LeaveEvent</span> {
+  <span class="text-amber-400">id</span>: <span class="text-stone-400">string</span>;                   <span class="text-stone-500">// UUID for deduplication</span>
+  <span class="text-amber-400">type</span>: <span class="text-yellow-400">'balance_updated'</span> | <span class="text-yellow-400">'request_created'</span> | <span class="text-yellow-400">'request_decided'</span> | <span class="text-yellow-400">'hcm_sync'</span>;
+  <span class="text-amber-400">payload</span>: <span class="text-orange-400">HCMBalance</span> | <span class="text-orange-400">LeaveRequest</span> | { <span class="text-amber-400">employeeId</span>: <span class="text-stone-400">string</span>; <span class="text-amber-400">location</span>: <span class="text-stone-400">string</span> };
+  <span class="text-amber-400">timestamp</span>: <span class="text-stone-400">string</span>;           <span class="text-stone-500">// ISO8601</span>
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- Section 6: Optimistic Updates & Background Refresh -->
+    <section id="optimistic" class="py-16 border-b border-stone-200">
+      <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+        <span class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-lg font-bold">6</span>
+        Optimistic Updates & Background Refresh
+      </h2>
+
+      <div class="bg-linear-to-br from-amber-50 via-orange-50 to-yellow-50 rounded-2xl p-8 mb-12 border border-amber-200">
+        <h3 class="text-2xl font-bold mb-6 text-amber-900">Why Optimistic Updates?</h3>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg text-amber-900">Instant Feedback</h4>
+                <p class="text-sm text-amber-700">Users see changes immediately without waiting for network roundtrips. The UI responds in under 16ms (single frame) instead of 200-500ms typical API latency.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg text-orange-900">Success is the Common Case</h4>
+                <p class="text-sm text-orange-700">In a well-designed system, 95%+ of user actions succeed. Optimistic updates optimize for this majority while gracefully handling the rare failure.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-yellow-600 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg text-yellow-900">Automatic Rollback</h4>
+                <p class="text-sm text-yellow-700">When errors occur, the UI seamlessly reverts to the previous state. Users see a clear error message and can retry. No manual refresh needed.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/80 rounded-xl p-6">
+            <h4 class="font-bold mb-4">Implementation Pattern</h4>
+            <div class="code-block rounded-lg p-4 text-xs">
+              <pre class="font-mono text-stone-300"><code><span class="text-rose-400">const</span> mutation = <span class="text-orange-400">useMutation</span>({
+  mutationFn: submitRequest,
+
+  <span class="text-amber-400">onMutate</span>: <span class="text-rose-400">async</span> (newData) => {
+    <span class="text-stone-500">// 1. Cancel in-flight queries</span>
+    <span class="text-rose-400">await</span> queryClient.cancelQueries({ queryKey });
+
+    <span class="text-stone-500">// 2. Snapshot current state</span>
+    <span class="text-rose-400">const</span> previous = queryClient.getQueryData(queryKey);
+
+    <span class="text-stone-500">// 3. Optimistically update cache</span>
+    queryClient.setQueryData(queryKey, (old) =>
+      [...old, { ...newData, <span class="text-amber-400">isOptimistic: true</span> }]
+    );
+
+    <span class="text-rose-400">return</span> { previous }; <span class="text-stone-500">// For rollback</span>
+  },
+
+  <span class="text-red-400">onError</span>: (err, vars, context) => {
+    <span class="text-stone-500">// Rollback to snapshot</span>
+    queryClient.setQueryData(queryKey, context?.previous);
+    showToast({ type: <span class="text-yellow-400">'error'</span>, message: err.message });
+  },
+
+  <span class="text-orange-400">onSettled</span>: () => {
+    <span class="text-stone-500">// Reconcile with server truth</span>
+    queryClient.invalidateQueries({ queryKey });
+  },
+});</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-linear-to-br from-orange-50 via-rose-50 to-red-50 rounded-2xl p-8 border border-orange-200">
+        <h3 class="text-2xl font-bold mb-6 text-orange-900">Why Background Refresh with SSE?</h3>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg text-orange-900">Multi-User Consistency</h4>
+                <p class="text-sm text-orange-700">When Employee A submits a request, Manager B sees it appear instantly. When Manager approves, Employee A's balance updates in real-time without polling.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-12 h-12 bg-rose-500 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg text-rose-900">Server as Source of Truth</h4>
+                <p class="text-sm text-rose-700">SSE events push authoritative updates. Even if optimistic state diverges temporarily (e.g., concurrent approvals), the server reconciles the final state.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg text-red-900">Efficient Bandwidth</h4>
+                <p class="text-sm text-red-700">Unlike polling, SSE only transmits data when changes occur. A single persistent connection replaces repeated HTTP requests, reducing server load by 90%+.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="bg-white/80 rounded-xl p-5">
+              <h4 class="font-semibold text-sm text-stone-500 uppercase tracking-wider mb-3">Stale-While-Revalidate Pattern</h4>
+              <div class="flex items-center gap-4">
+                <div class="flex-1">
+                  <div class="h-2 bg-amber-200 rounded-full mb-1">
+                    <div class="h-2 bg-amber-500 rounded-full w-full"></div>
+                  </div>
+                  <span class="text-xs text-stone-500">Show cached data instantly</span>
+                </div>
+                <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+                <div class="flex-1">
+                  <div class="h-2 bg-orange-200 rounded-full mb-1">
+                    <div class="h-2 bg-orange-500 rounded-full w-3/4 animate-pulse"></div>
+                  </div>
+                  <span class="text-xs text-stone-500">Revalidate in background</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white/80 rounded-xl p-5">
+              <h4 class="font-semibold text-sm text-stone-500 uppercase tracking-wider mb-3">SSE Event Flow</h4>
+              <div class="space-y-2 text-sm">
+                <div class="flex items-center gap-2">
+                  <span class="w-6 h-6 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 text-xs font-bold">1</span>
+                  <span>Server action triggers <code class="bg-stone-100 px-1 rounded text-xs">broadcast(event)</code></span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 text-xs font-bold">2</span>
+                  <span>EventEmitter emits to all SSE streams</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-700 text-xs font-bold">3</span>
+                  <span><code class="bg-stone-100 px-1 rounded text-xs">useLeaveSSE</code> receives event</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-6 h-6 bg-rose-100 rounded-full flex items-center justify-center text-rose-600 text-xs font-bold">4</span>
+                  <span>Hook invalidates relevant query keys</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-xs font-bold">5</span>
+                  <span>TanStack Query refetches fresh data</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Challenges & Solutions -->
+    <section id="challenges" class="py-16 border-b border-stone-200">
+      <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+        <span class="w-10 h-10 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center text-lg font-bold">7</span>
+        Challenges Faced & Solutions Adopted
+      </h2>
+
+      <div class="space-y-8">
+        <!-- Challenge 1 -->
+        <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden">
+          <div class="bg-linear-to-r from-red-600 to-orange-500 p-6">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3">
+              <span class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center text-sm">1</span>
+              SSE State Updates Violating React Hooks Rules
+            </h3>
+          </div>
+          <div class="p-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-red-600 mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                  Challenge
+                </h4>
+                <p class="text-sm text-stone-600 mb-4">
+                  Both <code class="bg-stone-100 px-1 rounded">useAdminLeave</code> and <code class="bg-stone-100 px-1 rounded">useManagerLeave</code>
+                  hooks call <code class="bg-stone-100 px-1 rounded">setState</code> inside <code class="bg-stone-100 px-1 rounded">useEffect</code>
+                  when SSE events arrive, triggering ESLint's <code class="bg-red-100 text-red-700 px-1 rounded">react-hooks/set-state-in-effect</code> warning.
+                </p>
+                <div class="code-block rounded-lg p-3 text-xs">
+                  <pre class="font-mono text-red-300"><code><span class="text-stone-500">// ESLint complains about this pattern</span>
+useEffect(() => {
+  if (lastEvent?.type === 'balance_updated') {
+    setStaleCells(prev => <span class="text-red-400">/* violation */</span>
+      new Set(prev).add(staleKey(...))
+    );
+  }
+}, [lastEvent]);</code></pre>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold text-amber-600 mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  Solution
+                </h4>
+                <p class="text-sm text-stone-600 mb-4">
+                  <strong>Intentional deviation with documentation.</strong> The SSE event-driven pattern requires synchronous state updates
+                  to prevent race conditions between optimistic updates and server events. We use a targeted ESLint disable with inline comment
+                  explaining the rationale.
+                </p>
+                <div class="code-block rounded-lg p-3 text-xs">
+                  <pre class="font-mono text-amber-300"><code><span class="text-stone-500">// eslint-disable-next-line react-hooks/set-state-in-effect</span>
+<span class="text-stone-500">// Intentional: SSE events require immediate state sync</span>
+<span class="text-stone-500">// to mark cells stale before user interaction</span>
+setStaleCells(prev => new Set(prev).add(staleKey(...)));</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Challenge 2 -->
+        <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden">
+          <div class="bg-linear-to-r from-amber-600 to-yellow-500 p-6">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3">
+              <span class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center text-sm">2</span>
+              Balance Overselling on Concurrent Requests
+            </h3>
+          </div>
+          <div class="p-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-amber-600 mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                  Challenge
+                </h4>
+                <p class="text-sm text-stone-600 mb-4">
+                  If an employee with 5 annual days submits two 3-day requests simultaneously, both might pass validation if each
+                  only checks the static balance (5 days), resulting in 6 days approved against 5 available.
+                </p>
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs">
+                  <div class="font-semibold text-amber-800 mb-2">Race Condition Scenario:</div>
+                  <div class="space-y-1 text-amber-700">
+                    <div>T1: Request A checks balance (5) -> passes</div>
+                    <div>T2: Request B checks balance (5) -> passes</div>
+                    <div>T3: Both approved -> 6 days deducted from 5</div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold text-amber-600 mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  Solution
+                </h4>
+                <p class="text-sm text-stone-600 mb-4">
+                  <strong>Optimistic Reservation Pattern.</strong> Available balance is calculated as:
+                  <code class="bg-stone-100 px-1 rounded">available = balance - pendingDays</code>.
+                  All pending requests of the same type/location/employee are summed before validation.
+                </p>
+                <div class="code-block rounded-lg p-3 text-xs">
+                  <pre class="font-mono text-amber-300"><code><span class="text-rose-400">const</span> pendingDays = <span class="text-rose-400">await</span> getPendingDays(
+  employeeId, location, leaveType
+);
+<span class="text-rose-400">const</span> available = balance.balance - pendingDays;
+
+<span class="text-rose-400">if</span> (days > available) {
+  <span class="text-rose-400">return</span> NextResponse.json({
+    error: <span class="text-yellow-400">'Insufficient balance'</span>,
+    code: <span class="text-yellow-400">'INSUFFICIENT_BALANCE'</span>,
+    available,
+  }, { status: <span class="text-amber-400">422</span> });
+}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Challenge 3 -->
+        <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden">
+          <div class="bg-linear-to-r from-orange-600 to-amber-500 p-6">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3">
+              <span class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center text-sm">3</span>
+              Form Reset After Successful Submission
+            </h3>
+          </div>
+          <div class="p-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-orange-600 mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                  Challenge
+                </h4>
+                <p class="text-sm text-stone-600 mb-4">
+                  How does the <code class="bg-stone-100 px-1 rounded">LeaveRequestForm</code> component know when to reset
+                  after a successful submission? Callbacks create coupling; polling mutation state is inefficient.
+                </p>
+                <div class="bg-orange-50 border border-orange-200 rounded-lg p-3 text-xs text-orange-700">
+                  <div class="font-semibold mb-1">Requirements:</div>
+                  <ul class="list-disc list-inside space-y-1">
+                    <li>Reset form fields after success</li>
+                    <li>Preserve location selection (frequently reused)</li>
+                    <li>No callback prop drilling</li>
+                    <li>No stale closure bugs</li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold text-amber-600 mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  Solution
+                </h4>
+                <p class="text-sm text-stone-600 mb-4">
+                  <strong>Reactive Counter Pattern.</strong> The hook exposes a <code class="bg-stone-100 px-1 rounded">submitCount</code>
+                  number that increments on each successful submission. The form component watches this with <code class="bg-stone-100 px-1 rounded">useEffect</code>
+                  and resets when it changes.
+                </p>
+                <div class="code-block rounded-lg p-3 text-xs">
+                  <pre class="font-mono text-amber-300"><code><span class="text-stone-500">// In hook: increment on success</span>
+<span class="text-rose-400">const</span> submitCountRef = useRef(<span class="text-amber-400">0</span>);
+onSuccess: () => {
+  submitCountRef.current += <span class="text-amber-400">1</span>;
+  setSubmitCount(submitCountRef.current);
+}
+
+<span class="text-stone-500">// In form: react to changes</span>
+useEffect(() => {
+  <span class="text-rose-400">if</span> (submitCount === <span class="text-amber-400">0</span>) <span class="text-rose-400">return</span>; <span class="text-stone-500">// Initial</span>
+  resetForm({ preserveLocation: <span class="text-amber-400">true</span> });
+}, [submitCount]);</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Challenge 4 -->
+        <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden">
+          <div class="bg-linear-to-r from-rose-600 to-red-500 p-6">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3">
+              <span class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center text-sm">4</span>
+              SSE Duplicate Event Processing
+            </h3>
+          </div>
+          <div class="p-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-rose-600 mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                  Challenge
+                </h4>
+                <p class="text-sm text-stone-600 mb-4">
+                  Network hiccups cause EventSource reconnections. The server may re-send recent events during reconnection,
+                  leading to duplicate toasts, double cache invalidations, or stale marker flicker.
+                </p>
+                <div class="bg-rose-50 border border-rose-200 rounded-lg p-3 text-xs text-rose-700">
+                  <div class="font-semibold mb-1">Symptoms:</div>
+                  <ul class="list-disc list-inside space-y-1">
+                    <li>Multiple "New request" toasts for same request</li>
+                    <li>Unnecessary network refetches</li>
+                    <li>UI flicker from repeated state updates</li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold text-amber-600 mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  Solution
+                </h4>
+                <p class="text-sm text-stone-600 mb-4">
+                  <strong>Deduplication via Event ID Set.</strong> Each broadcast event includes a unique UUID.
+                  The client maintains a <code class="bg-stone-100 px-1 rounded">seenIdsRef</code> Set and skips events already processed.
+                </p>
+                <div class="code-block rounded-lg p-3 text-xs">
+                  <pre class="font-mono text-amber-300"><code><span class="text-rose-400">const</span> seenIdsRef = useRef&lt;Set&lt;string&gt;&gt;(<span class="text-rose-400">new</span> Set());
+
+eventSource.onmessage = (e) => {
+  <span class="text-rose-400">const</span> parsed = JSON.parse(e.data);
+
+  <span class="text-stone-500">// Skip if already processed</span>
+  <span class="text-rose-400">if</span> (parsed.id && seenIdsRef.current.has(parsed.id)) {
+    <span class="text-rose-400">return</span>;
+  }
+
+  <span class="text-stone-500">// Mark as seen</span>
+  <span class="text-rose-400">if</span> (parsed.id) {
+    seenIdsRef.current.add(parsed.id);
+  }
+
+  setLastEvent(parsed);
+};</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Challenge 5 -->
+        <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden">
+          <div class="bg-linear-to-r from-yellow-600 to-amber-500 p-6">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3">
+              <span class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center text-sm">5</span>
+              Admin Cell Staleness Detection
+            </h3>
+          </div>
+          <div class="p-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-yellow-700 mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                  Challenge
+                </h4>
+                <p class="text-sm text-stone-600 mb-4">
+                  The admin views a table of employee balances. When a manager approves a request (balance changes),
+                  the specific cell showing that employee's balance is now stale. How do we indicate this without a full page refresh?
+                </p>
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-xs text-yellow-700">
+                  <div class="font-semibold mb-1">Cell Identification:</div>
+                  <div class="font-mono">employeeId + location + leaveType = unique cell</div>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold text-amber-600 mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  Solution
+                </h4>
+                <p class="text-sm text-stone-600 mb-4">
+                  <strong>Stale Cell Set with Composite Keys.</strong> A <code class="bg-stone-100 px-1 rounded">staleCells</code> Set
+                  stores composite keys. SSE events add keys; manual updates or refetches clear them. Cells render an amber indicator when their key is present.
+                </p>
+                <div class="code-block rounded-lg p-3 text-xs">
+                  <pre class="font-mono text-amber-300"><code><span class="text-rose-400">function</span> staleKey(empId, loc, type) {
+  <span class="text-rose-400">return</span> <span class="text-yellow-400">`</span>${empId}:${loc}:${type}<span class="text-yellow-400">`</span>;
+}
+
+<span class="text-stone-500">// On SSE balance_updated event:</span>
+setStaleCells(prev =>
+  <span class="text-rose-400">new</span> Set(prev).add(staleKey(emp, loc, type))
+);
+
+<span class="text-stone-500">// In BalanceCell render:</span>
+{staleCells.has(staleKey(...)) && (
+  &lt;span className=<span class="text-yellow-400">"amber-dot animate-pulse"</span> /&gt;
+)}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Challenge 6 -->
+        <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden">
+          <div class="bg-linear-to-r from-stone-600 to-stone-700 p-6">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3">
+              <span class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center text-sm">6</span>
+              Testing Hooks with Complex Dependencies
+            </h3>
+          </div>
+          <div class="p-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-stone-600 mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                  Challenge
+                </h4>
+                <p class="text-sm text-stone-600 mb-4">
+                  Hooks like <code class="bg-stone-100 px-1 rounded">useEmployeeLeave</code> depend on TanStack Query, SSE, Zustand,
+                  and browser APIs. Full integration testing requires complex environment setup that's fragile and slow.
+                </p>
+                <div class="bg-stone-100 border border-stone-300 rounded-lg p-3 text-xs text-stone-700">
+                  <div class="font-semibold mb-1">Dependencies:</div>
+                  <ul class="list-disc list-inside space-y-1">
+                    <li>QueryClientProvider wrapper</li>
+                    <li>EventSource polyfill</li>
+                    <li>localStorage mock</li>
+                    <li>Fetch mock with timing</li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold text-amber-600 mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  Solution
+                </h4>
+                <p class="text-sm text-stone-600 mb-4">
+                  <strong>Contract-Based Testing.</strong> Instead of testing the entire hook, we extract and test the
+                  <code class="bg-stone-100 px-1 rounded">mutationFn</code> (API contract) in isolation. Mock <code class="bg-stone-100 px-1 rounded">fetch</code>
+                  to verify request shape, test error paths for each error code.
+                </p>
+                <div class="code-block rounded-lg p-3 text-xs">
+                  <pre class="font-mono text-amber-300"><code><span class="text-stone-500">// Test the API contract, not the hook</span>
+it(<span class="text-yellow-400">'sends all required fields'</span>, async () => {
+  <span class="text-rose-400">const</span> fetchSpy = vi.spyOn(global, <span class="text-yellow-400">'fetch'</span>);
+  <span class="text-rose-400">await</span> submitRequestApi(testData);
+
+  <span class="text-rose-400">const</span> body = JSON.parse(fetchSpy.mock.calls[<span class="text-amber-400">0</span>][<span class="text-amber-400">1</span>].body);
+  expect(body).toHaveProperty(<span class="text-yellow-400">'reason'</span>); <span class="text-stone-500">// Regression</span>
+});</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: Testing Strategy -->
+    <section class="py-16">
+      <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+        <span class="w-10 h-10 rounded-lg bg-yellow-100 text-yellow-700 flex items-center justify-center text-lg font-bold">8</span>
+        Testing Strategy
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white rounded-xl border border-stone-200 p-6">
+          <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Unit Tests</h3>
+          <p class="text-sm text-stone-600 mb-4">Vitest with JSDOM for isolated logic testing</p>
+          <ul class="text-xs text-stone-500 space-y-1">
+            <li>* Data access layer (hcm.ts)</li>
+            <li>* Auth validation (auth.ts)</li>
+            <li>* SSE broadcasting (sse.ts)</li>
+            <li>* Query key factories</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl border border-stone-200 p-6">
+          <div class="w-12 h-12 bg-rose-100 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Component Tests</h3>
+          <p class="text-sm text-stone-600 mb-4">Storybook stories with Vitest browser mode</p>
+          <ul class="text-xs text-stone-500 space-y-1">
+            <li>* Visual regression testing</li>
+            <li>* Interaction tests (play functions)</li>
+            <li>* State coverage (loading, error, stale)</li>
+            <li>* Accessibility checks</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl border border-stone-200 p-6">
+          <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Integration Tests</h3>
+          <p class="text-sm text-stone-600 mb-4">API route handlers with mocked persistence</p>
+          <ul class="text-xs text-stone-500 space-y-1">
+            <li>* Request validation paths</li>
+            <li>* Business rule enforcement</li>
+            <li>* Error code verification</li>
+            <li>* SSE broadcast triggers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-stone-900 rounded-xl p-6">
+        <h3 class="text-white font-semibold mb-4">Test Configuration (vitest.config.ts)</h3>
+        <pre class="text-sm font-mono text-stone-300 overflow-x-auto"><code><span class="text-rose-400">export default</span> defineConfig({
+  <span class="text-orange-400">test</span>: {
+    <span class="text-orange-400">globals</span>: <span class="text-amber-400">true</span>,
+    <span class="text-orange-400">projects</span>: [
+      {
+        <span class="text-orange-400">name</span>: <span class="text-yellow-400">'storybook'</span>,
+        <span class="text-orange-400">plugins</span>: [storybookPlugin()],
+        <span class="text-orange-400">browser</span>: {
+          <span class="text-orange-400">enabled</span>: <span class="text-amber-400">true</span>,
+          <span class="text-orange-400">name</span>: <span class="text-yellow-400">'chromium'</span>,
+          <span class="text-orange-400">provider</span>: <span class="text-yellow-400">'playwright'</span>,
+          <span class="text-orange-400">headless</span>: <span class="text-amber-400">true</span>,
+        },
+      },
+      {
+        <span class="text-orange-400">name</span>: <span class="text-yellow-400">'unit'</span>,
+        <span class="text-orange-400">environment</span>: <span class="text-yellow-400">'jsdom'</span>,
+        <span class="text-orange-400">include</span>: [<span class="text-yellow-400">'src/**/*.test.{ts,tsx}'</span>],
+        <span class="text-orange-400">exclude</span>: [<span class="text-yellow-400">'**/*.stories.*'</span>],
+      },
+    ],
+    <span class="text-orange-400">coverage</span>: {
+      <span class="text-orange-400">provider</span>: <span class="text-yellow-400">'v8'</span>,
+      <span class="text-orange-400">reporter</span>: [<span class="text-yellow-400">'text'</span>, <span class="text-yellow-400">'json'</span>, <span class="text-yellow-400">'html'</span>],
+    },
+  },
+});</code></pre>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-stone-900 text-stone-400 py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-linear-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="font-semibold text-white">HCM Leave Management System</div>
+            <div class="text-sm">Technical Reference Document v1.0</div>
+          </div>
+        </div>
+        <div class="text-sm">
+          Generated on <span class="text-white">June 24, 2026</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
