@@ -166,6 +166,8 @@ bun test:storybook
 
 Interactive component documentation and testing.
 
+**Live Demo:** [example-hr-amber.vercel.app](https://example-hr-amber.vercel.app)
+
 ```bash
 bun storybook        # Start at localhost:6006
 bun build-storybook  # Build static site
