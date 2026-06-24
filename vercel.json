@@ -1,4 +1,4 @@
 {
   "buildCommand": "bun run build-storybook",
-  "outputDirectory": "./output/storybook-static"
+  "outputDirectory": "storybook-out"
 }
